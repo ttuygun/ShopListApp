@@ -10,7 +10,9 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    private var lists: [String] = []
+    // MARK: Private properties
+    
+    private var viewModel = MainViewModel()
     
     // MARK: Life cicly
     
@@ -25,13 +27,13 @@ class MainViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        return viewModel.lists.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
 
-        cell.textLabel?.text = lists[indexPath.row]
+        cell.textLabel?.text = viewModel.lists[indexPath.row].name
         
         return cell
     }
@@ -39,8 +41,8 @@ class MainViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            lists.remove(at: indexPath.row)
-
+            viewModel.removeList(at: indexPath.row)
+            
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -70,7 +72,7 @@ class MainViewController: UITableViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) {
             (action) in
             if let listName = alertTextField.text {
-                self.lists.append(listName)
+                self.viewModel.addNewList(listName)
                 self.tableView.reloadData()
             }
         }
