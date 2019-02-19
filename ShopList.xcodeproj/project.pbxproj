@@ -22,6 +22,7 @@
 		8E9830B7221982AA00C4B05F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9830B6221982AA00C4B05F /* Repository.swift */; };
 		8E9830BA221983A800C4B05F /* RealmSwift+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9830B9221983A800C4B05F /* RealmSwift+Extension.swift */; };
 		8E9830BC2219863100C4B05F /* ListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9830BB2219863100C4B05F /* ListRepository.swift */; };
+		8E9830BF221B957D00C4B05F /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9830BE221B957D00C4B05F /* ItemsListViewController.swift */; };
 		BD86D8B7E553CDB593FEA015 /* Pods_ShopList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0336441975A29A871C6EC9A /* Pods_ShopList.framework */; };
 		FDB63CED6E461099BA82C389 /* Pods_ShopListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49079477A19906D5AC185EF /* Pods_ShopListUITests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		8E9830B6221982AA00C4B05F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8E9830B9221983A800C4B05F /* RealmSwift+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmSwift+Extension.swift"; sourceTree = "<group>"; };
 		8E9830BB2219863100C4B05F /* ListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepository.swift; sourceTree = "<group>"; };
+		8E9830BE221B957D00C4B05F /* ItemsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
 		9553044B34F5AE76119A8F03 /* Pods-ShopListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShopListTests/Pods-ShopListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6830EC080E6FBBC59D3960F /* Pods-ShopListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopListTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopListTests/Pods-ShopListTests.release.xcconfig"; sourceTree = "<group>"; };
 		E0336441975A29A871C6EC9A /* Pods_ShopList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9830A4221881D700C4B05F /* Main */,
+				8E9830BD221B954800C4B05F /* ItemsList */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,14 @@
 				8E9830B9221983A800C4B05F /* RealmSwift+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8E9830BD221B954800C4B05F /* ItemsList */ = {
+			isa = PBXGroup;
+			children = (
+				8E9830BE221B957D00C4B05F /* ItemsListViewController.swift */,
+			);
+			path = ItemsList;
 			sourceTree = "<group>";
 		};
 		A60CA64E4C468A85314B1D95 /* Frameworks */ = {
@@ -469,6 +480,7 @@
 				8E9830BC2219863100C4B05F /* ListRepository.swift in Sources */,
 				8E9830722218794D00C4B05F /* AppDelegate.swift in Sources */,
 				8E9830A62218835800C4B05F /* MainViewController.swift in Sources */,
+				8E9830BF221B957D00C4B05F /* ItemsListViewController.swift in Sources */,
 				8E9830AE2218A1C300C4B05F /* List.swift in Sources */,
 				8E9830B42218A9D400C4B05F /* MainViewModel.swift in Sources */,
 			);
