@@ -18,6 +18,9 @@ class MainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // register tableview's cell
+        tableView.register(MainCell.self, forCellReuseIdentifier: MainCell.cellIdentifier())
     }
 
     // MARK: - Table view data source
@@ -31,7 +34,7 @@ class MainViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.cellIdentifier(), for: indexPath)
 
         cell.textLabel?.text = viewModel.lists[indexPath.row].name
         
