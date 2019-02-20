@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-extension Results {
+public extension Results {
     func toArray<T>(type: T.Type) -> [T] {
         return compactMap { $0 as? T }
     }
