@@ -11,16 +11,26 @@ import UIKit
 class MainViewController: UITableViewController {
 
     // MARK: Private properties
-    
-    private var viewModel = MainViewModel()
+
+    lazy var controller: MainController = {
+        return MainController()
+    }()
+
+    var viewModel: MainViewModel {
+        return controller.viewModel
+    }
     
     // MARK: Life cicly
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initTableView()
+        controller.start()
+    }
 
+    func initTableView() {
         // register tableview's cell
-        tableView.register(MainCell.self, forCellReuseIdentifier: MainCell.cellIdentifier())
+        tableView.register(UINib(nibName: MainCell.cellIdentifier(), bundle: nil), forCellReuseIdentifier: MainCell.cellIdentifier())
     }
 
     // MARK: - Table view data source
@@ -30,13 +40,18 @@ class MainViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.lists.count
+        return viewModel.rowViewModels.value.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let rowViewModel = viewModel.rowViewModels.value[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.cellIdentifier(), for: indexPath)
 
-        cell.textLabel?.text = viewModel.lists[indexPath.row].name
+        if let cell = cell as? CellConfigurable {
+            let rowViewModel = viewModel.rowViewModels.value[indexPath.section]
+            cell.setup(viewModel: rowViewModel)
+        }
         
         return cell
     }
@@ -44,7 +59,8 @@ class MainViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.removeList(at: indexPath.row)
+
+            controller.handleRemoveList(at: indexPath.row)
             
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -86,13 +102,14 @@ class MainViewController: UITableViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) {
             (action) in
             if let listName = alertTextField.text {
-                self.viewModel.addNewList(listName)
+
+                self.controller.handleAddNewList(listName)
+
                 self.tableView.reloadData()
             }
         }
         alertController.addAction(addAction)
-        
-        
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
         

@@ -9,13 +9,15 @@
 import Foundation
 
 class ListRepository: Repository {
-    
-    func add(_ list: List) {
-        createObject(list)
+
+    @discardableResult
+    func add(_ list: List) -> List? {
+        return createObject(list)
     }
-    
-    func delete(_ list: List) {
-        deleteObject(list)
+
+    @discardableResult
+    func delete(_ list: List) -> Bool {
+        return deleteObject(list)
     }
     
     func findAllLists() -> [List] {

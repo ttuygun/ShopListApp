@@ -17,16 +17,28 @@ class Repository {
         realm = PersisterManager.shared.realm
     }
     
-    func createObject(_ obejct: Object) {
-        try! realm.write {
-            realm.add(obejct)
+    func createObject<T: Object>(_ obejct: T) -> T? {
+        do {
+            try realm.write {
+                realm.add(obejct)
+            }
+            return obejct
+        } catch {
+            printLog(error.localizedDescription)
         }
+        return nil
     }
     
-    func deleteObject(_ obejct: Object) {
-        try! realm.write {
-            realm.delete(obejct)
+    func deleteObject(_ obejct: Object) -> Bool {
+        do {
+            try realm.write {
+                realm.delete(obejct)
+            }
+            return true
+        } catch {
+            printLog(error.localizedDescription)
         }
+        return false
     }
 
     func findAll<T: Object>(type: T.Type) -> Results<T>? {

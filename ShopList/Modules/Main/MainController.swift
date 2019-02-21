@@ -10,7 +10,7 @@ import Foundation
 
 class MainController {
     let viewModel: MainViewModel
-    let repository = ListRepository
+    let repository: ListRepository
 
     init(viewModel: MainViewModel = MainViewModel(), repository: ListRepository = ListRepository()) {
         self.viewModel = viewModel
@@ -35,15 +35,17 @@ class MainController {
         viewModel.rowViewModels.value = vms
     }
 
-//    func addNewList(_ name: String) {
-//        let list = List()
-//        list.name = name
-//
-//        repository.add(list)
-//    }
-//
-//    func removeList(at index: Int) {
-//        let list = lists[index]
-//        repository.delete(list)
-//    }
+    // MARK: - User interection
+
+    func handleAddNewList(_ name: String) {
+        let list = List()
+        list.name = name
+        repository.add(list)
+    }
+
+    func handleRemoveList(at index: Int) {
+        if let rowViewModel = viewModel.rowViewModels.value[index] as? MainCellViewModel {
+            repository.delete(rowViewModel.list)
+        }
+    }
 }

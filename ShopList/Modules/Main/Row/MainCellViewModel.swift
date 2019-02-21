@@ -9,9 +9,13 @@
 import Foundation
 
 class MainCellViewModel: RowViewModel {
-    let listName: String
+    let list: List
+
+    var listName: String? {
+        return list.name
+    }
 
     init(list: List) {
-        self.listName = list.name
+        self.list = list
     }
 }
