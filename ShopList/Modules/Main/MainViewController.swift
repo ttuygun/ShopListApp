@@ -45,12 +45,10 @@ class MainViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let rowViewModel = viewModel.rowViewModels.value[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.cellIdentifier(), for: indexPath)
 
         if let cell = cell as? CellConfigurable {
-            let rowViewModel = viewModel.rowViewModels.value[indexPath.section]
-            cell.setup(viewModel: rowViewModel)
+            cell.setup(viewModel: viewModel.getRowViewModel(at: indexPath))
         }
         
         return cell
@@ -60,7 +58,7 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            controller.handleRemoveList(at: indexPath.row)
+            viewModel.deleteList?(indexPath.row)
             
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -103,7 +101,7 @@ class MainViewController: UITableViewController {
             (action) in
             if let listName = alertTextField.text {
 
-                self.controller.handleAddNewList(listName)
+                self.viewModel.createList?(listName)
 
                 self.tableView.reloadData()
             }

@@ -14,6 +14,10 @@ class MainController {
 
     init(viewModel: MainViewModel = MainViewModel(), repository: ListRepository = ListRepository()) {
         self.viewModel = viewModel
+        
+        self.viewModel.createList = self.handleCreateList()
+        
+        
         self.repository = repository
     }
 
@@ -36,12 +40,16 @@ class MainController {
     }
 
     // MARK: - User interection
-
-    func handleAddNewList(_ name: String) {
-        let list = List()
-        list.name = name
-        repository.add(list)
+    
+    func handleCreateList() -> ((String) -> Void) {
+        return { (name) in
+            let list = List()
+            list.name = name
+            self.repository.add(list)
+            
+        }
     }
+
 
     func handleRemoveList(at index: Int) {
         if let rowViewModel = viewModel.rowViewModels.value[index] as? MainCellViewModel {
