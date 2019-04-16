@@ -14,11 +14,8 @@ class MainController {
 
     init(viewModel: MainViewModel = MainViewModel(), repository: ListRepository = ListRepository()) {
         self.viewModel = viewModel
-        
-        self.viewModel.createList = self.handleCreateList()
-        
-        
         self.repository = repository
+        self.viewModel.createList = self.handleCreateList()
     }
 
     func start() {
