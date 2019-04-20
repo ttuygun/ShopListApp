@@ -11,7 +11,6 @@
 		78DFB8EF221E07BA009FE77E /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB8ED221E07BA009FE77E /* MainCell.swift */; };
 		78DFB8F0221E07BA009FE77E /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DFB8EE221E07BA009FE77E /* MainCell.xib */; };
 		78DFB8F2221E0863009FE77E /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB8F1221E0863009FE77E /* MainCellViewModel.swift */; };
-		78DFB8F4221E0ACA009FE77E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB8F3221E0ACA009FE77E /* MainController.swift */; };
 		78DFB8F6221ECF96009FE77E /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFB8F5221ECF96009FE77E /* HelperFunctions.swift */; };
 		8E9830722218794D00C4B05F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9830712218794D00C4B05F /* AppDelegate.swift */; };
 		8E9830772218794D00C4B05F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9830752218794D00C4B05F /* Main.storyboard */; };
@@ -61,7 +60,6 @@
 		78DFB8ED221E07BA009FE77E /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		78DFB8EE221E07BA009FE77E /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
 		78DFB8F1221E0863009FE77E /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
-		78DFB8F3221E0ACA009FE77E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		78DFB8F5221ECF96009FE77E /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		87ECAE4CB0301E7912CBB3D2 /* Pods_ShopListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E98306E2218794D00C4B05F /* ShopList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				78DFB8EC221E0748009FE77E /* Row */,
-				78DFB8F3221E0ACA009FE77E /* MainController.swift */,
 				8E9830A52218835800C4B05F /* MainViewController.swift */,
 				8E9830B32218A9D400C4B05F /* MainViewModel.swift */,
 			);
@@ -527,7 +524,6 @@
 				8E9830BA221983A800C4B05F /* RealmSwift+Extension.swift in Sources */,
 				8E9830C5221CE83400C4B05F /* Observable.swift in Sources */,
 				8E9830BC2219863100C4B05F /* ListRepository.swift in Sources */,
-				78DFB8F4221E0ACA009FE77E /* MainController.swift in Sources */,
 				8E9830722218794D00C4B05F /* AppDelegate.swift in Sources */,
 				8E9830C2221CE78000C4B05F /* UITableViewCell+Extension.swift in Sources */,
 				8E9830A62218835800C4B05F /* MainViewController.swift in Sources */,
