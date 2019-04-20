@@ -12,6 +12,17 @@ class ListRepository: Repository {
 
     @discardableResult
     func add(_ list: List) -> List? {
+        let primaryKey = incrementID(for: List.self)
+        list.id = primaryKey
+        
+        if list.createdAt == nil {
+            list.createdAt = Date()
+        }
+        
+        if list.modifiedAt == nil {
+            list.modifiedAt = Date()
+        }
+        
         return createObject(list)
     }
 
@@ -21,7 +32,13 @@ class ListRepository: Repository {
     }
     
     func findAllLists() -> [List] {
-        return findAll(type: List.self)?.toArray(type: List.self) ?? []
+        guard let result = findAll(type: List.self) else {
+            return []
+        }
+        
+        return result
+            .sorted(byKeyPath: "modifiedAt", ascending: false)
+            .toArray(type: List.self)
     }
     
 }

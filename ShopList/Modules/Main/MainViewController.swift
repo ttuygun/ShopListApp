@@ -10,22 +10,19 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    // MARK: Private properties
+    // MARK: Properties
 
-    lazy var controller: MainController = {
-        return MainController()
-    }()
-
-    var viewModel: MainViewModel {
-        return controller.viewModel
-    }
+    let viewModel = MainViewModel()
     
     // MARK: Life cicly
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initTableView()
-        controller.start()
+        
+        viewModel.rowViewModels.addObserver { [weak self] _ in
+            self?.tableView.reloadData()
+        }
     }
 
     func initTableView() {
@@ -54,7 +51,7 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            viewModel.deleteList?(indexPath.row)
+            viewModel.deleteList(at: indexPath.row)
             
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -97,7 +94,7 @@ class MainViewController: UITableViewController {
             (action) in
             if let listName = alertTextField.text {
 
-                self.viewModel.createList?(listName)
+                self.viewModel.createList(name: listName)
 
                 self.tableView.reloadData()
             }

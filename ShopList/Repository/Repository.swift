@@ -44,4 +44,9 @@ class Repository {
     func findAll<T: Object>(type: T.Type) -> Results<T>? {
         return realm.objects(type)
     }
+    
+    func incrementID<T: Object>(for type: T.Type) -> Int {
+        let lastId = realm.objects(type).max(ofProperty: "id") as Int? ?? 0
+        return lastId + 1
+    }
 }

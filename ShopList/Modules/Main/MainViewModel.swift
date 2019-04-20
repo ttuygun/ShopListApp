@@ -17,6 +17,20 @@ class MainViewModel {
 
     init(repository: ListRepository = ListRepository()) {
         self.repository = repository
+        reloadData()
+    }
+    
+    func reloadData() {
+        let lists = repository.findAllLists()
+        buildRowViewModels(lists: lists)
+    }
+    
+    func buildRowViewModels(lists: [List]) {
+        var rowVMs = [RowViewModel]()
+        for list in lists {
+            rowVMs.append(MainCellViewModel(list: list))
+        }
+        rowViewModels.value = rowVMs
     }
 
     func getRowViewModel(at indexPath: IndexPath) -> RowViewModel {
@@ -27,11 +41,13 @@ class MainViewModel {
         let list = List()
         list.name = name
         repository.add(list)
+        reloadData()
     }
 
     func deleteList(at index: Int) -> Void {
         if let rowVM = rowViewModels.value[index] as? MainCellViewModel {
             repository.delete(rowVM.list)
+            reloadData()
         }
     }
 }
