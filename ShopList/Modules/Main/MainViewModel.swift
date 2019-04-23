@@ -13,7 +13,15 @@ class MainViewModel {
     let repository: ListRepository
 
     let rowViewModels = Observable<[RowViewModel]>(value: [])
-    let isLoading = Observable<Bool>(value: false)
+    
+    private var _selectedList: List? = nil
+    var selectedList: List? {
+        set { _selectedList = newValue }
+        get {
+            
+            return
+        }
+    }
 
     init(repository: ListRepository = ListRepository()) {
         self.repository = repository
@@ -22,13 +30,13 @@ class MainViewModel {
     
     func reloadData() {
         let lists = repository.findAllLists()
-        buildRowViewModels(lists: lists)
+        buildRowViewModels(lists)
     }
     
-    func buildRowViewModels(lists: [List]) {
+    func buildRowViewModels(_ lists: [List]) {
         var rowVMs = [RowViewModel]()
         for list in lists {
-            rowVMs.append(MainCellViewModel(list: list))
+            rowVMs.append(MainCellViewModel(list))
         }
         rowViewModels.value = rowVMs
     }
@@ -45,9 +53,12 @@ class MainViewModel {
     }
 
     func deleteList(at index: Int) -> Void {
-        if let rowVM = rowViewModels.value[index] as? MainCellViewModel {
-            repository.delete(rowVM.list)
-            reloadData()
+        guard let rowVM = getRowViewModel(at: IndexPath(row: index, section: 0)) as? MainCellViewModel else {
+            return
         }
+        
+        repository.delete(rowVM.list)
+        reloadData()
     }
+    
 }

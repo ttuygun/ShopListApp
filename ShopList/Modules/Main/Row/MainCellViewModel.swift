@@ -15,7 +15,7 @@ class MainCellViewModel: RowViewModel {
         return list.name
     }
 
-    init(list: List) {
+    init(_ list: List) {
         self.list = list
     }
 }

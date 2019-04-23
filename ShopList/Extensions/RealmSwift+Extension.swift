@@ -9,7 +9,13 @@
 import Foundation
 import RealmSwift
 
-public extension Results {
+public extension RealmSwift.Results {
+    func toArray<T>(type: T.Type) -> [T] {
+        return compactMap { $0 as? T }
+    }
+}
+
+public extension RealmSwift.List {
     func toArray<T>(type: T.Type) -> [T] {
         return compactMap { $0 as? T }
     }

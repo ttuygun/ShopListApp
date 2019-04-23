@@ -72,12 +72,11 @@ class MainViewController: UITableViewController {
         
         if segue.identifier == "itemsListSegue" {
             if let destination = segue.destination as? ItemsListViewController {
-                
+                destination.viewModel = ItemsListViewModel(list: viewModel.)
             }
         }
     }
  
-
     // MARK: - Action handlers
     
     @IBAction func onTapAddButton(_ sender: UIBarButtonItem) {

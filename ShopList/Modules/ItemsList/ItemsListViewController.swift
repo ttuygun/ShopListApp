@@ -9,7 +9,13 @@
 import UIKit
 
 class ItemsListViewController: UITableViewController {
+    
+    // MARK: Properties
+    
+    var viewModel: ItemsListViewModel?
 
+    // MARK: LIfe cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

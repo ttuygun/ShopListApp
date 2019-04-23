@@ -15,6 +15,7 @@ class List: Object {
     @objc dynamic var total: Int = 0
     @objc dynamic var createdAt: Date? = nil
     @objc dynamic var modifiedAt: Date? = nil
+    
     let items = RealmSwift.List<Item>()
     
     override static func primaryKey() -> String? {
