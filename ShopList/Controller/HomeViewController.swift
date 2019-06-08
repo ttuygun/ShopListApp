@@ -21,7 +21,6 @@ class HomeViewController: UIViewController {
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Home"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,10 +31,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shoppingLists = shoppingListRepo.getAll()
-        tableView.reloadData()
-    }
-    
-    @objc func refresh() {
         tableView.reloadData()
     }
     
