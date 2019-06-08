@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        self.window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        self.window?.makeKeyAndVisible()
         
         return true
     }
