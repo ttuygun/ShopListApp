@@ -59,7 +59,36 @@ class ItemsListViewController: UITableViewController {
         return cell
     }
 
+    @IBAction func addItemButtonClicked(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add new item", message: nil, preferredStyle: .alert)
+        
+        var nameTextField = UITextField()
+        alertController.addTextField {
+            (textField) in
+            nameTextField = textField
+            nameTextField.placeholder = "Item name"
+        }
+        
+        var priceTextField = UITextField()
+        alertController.addTextField { (textField) in
+            priceTextField = textField
+            priceTextField.placeholder = "Price"
+        }
+  
+        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            if let name = nameTextField.text, let price = priceTextField.text {
+                self.viewModel?.createItem(name: name, price: Decimal(string: price) ?? Decimal(0))
+                
+                self.tableView.reloadData()
+            }
+        }
 
+        alertController.addAction(addAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
