@@ -53,7 +53,9 @@ class ItemsListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ItemListCell.cellIdentifier(), for: indexPath)
 
         if let cell = cell as? CellConfigurable {
-            cell.setup(viewModel: (viewModel?.getRowViewModel(at: indexPath))!)
+            if let viewModel = viewModel?.getRowViewModel(at: indexPath) {
+                cell.setup(viewModel: viewModel)
+            }
         }
 
         return cell
@@ -78,7 +80,6 @@ class ItemsListViewController: UITableViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             if let name = nameTextField.text, let price = priceTextField.text {
                 self.viewModel?.createItem(name: name, price: Decimal(string: price) ?? Decimal(0))
-                
                 self.tableView.reloadData()
             }
         }
