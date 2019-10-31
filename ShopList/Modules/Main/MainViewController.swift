@@ -9,9 +9,11 @@
 import UIKit
 
 class MainViewController: UITableViewController {
+    
+    // MARK: IBOutlets
+    @IBOutlet weak var searchBar: UISearchBar!
 
     // MARK: Properties
-
     let viewModel = MainViewModel()
     
     // MARK: Life cicly
@@ -23,6 +25,8 @@ class MainViewController: UITableViewController {
         viewModel.rowViewModels.addObserver { [weak self] _ in
             self?.tableView.reloadData()
         }
+
+        searchBar.delegate = self
     }
 
     func initTableView() {
@@ -103,7 +107,19 @@ class MainViewController: UITableViewController {
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
-        
+
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let searchedText = searchBar.text {
+            debugPrint(searchedText)
+            viewModel.filter(with: searchedText)
+            if searchedText.count == 0 {
+                viewModel.reloadData()
+            }
+        }
     }
 }
